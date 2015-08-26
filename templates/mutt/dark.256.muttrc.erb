@@ -1,21 +1,6 @@
 # Mutt template by Robert Timm (https://github.com/rti)
 # Base16 scheme and Base16 Builder by Chris Kempson (https://github.com/chriskempson)
-
-# -----------------------------------------------------------------------------
-# MESSAGE STATUS FLAGS
-# -----------------------------------------------------------------------------
-# D message is deleted (is marked for deletion) 
-# d message have attachments marked for deletion
-# K contains a PGP public key
-# N message is new
-# O message is old
-# P message is PGP encrypted
-# r message has been replied to
-# S message is PGP signed, and the signature is succesfully verified
-# s message is PGP signed
-# ! message is flagged
-# * message is tagged
-
+#
 # -----------------------------------------------------------------------------
 # MESSAGE MATCH PATTERNS
 # -----------------------------------------------------------------------------
@@ -57,16 +42,6 @@
 # ~z [MIN]-[MAX]  messages with a size in the range MIN to MAX *)
 # ~=              duplicated messages (see $duplicate_threads)
 
-# -----------------------------------------------------------------------------
-# MESSAGE to_chars flags
-# -----------------------------------------------------------------------------
-# + message is to you and you only
-# T message is to you, but also to or cc'ed to others
-# C message is cc'ed to you
-# F message is from you
-# L message is sent to a subscribed mailing list
-
-
 # basic colors ---------------------------------------------------------
 #     name        foreground  background  pattern
 color normal      color20     color0
@@ -78,21 +53,21 @@ color attachment  color8      color0
 color search      color2      color0
 color status      color8      color18
 color indicator   color7      color19
-color tree        color19     color0                 # arrow in threads
+color tree        color19     color0                  # arrow in threads
 
-color index       color20     color0      "~A"       # all messages
-color index       color1      color0      "~F"       # flagged messages
-color index       color20     color0      "~v~(!~N)" # collapsed thread with no unread
-color index       color4      color0      "~U"       # unread messages
-color index       color4      color0      "~v~(~N)"  # collapsed thread with some unread
-color index       color1      color0      "~v~(~F)"  # collapsed thread with some flagged
-color index       color0      color1      "~D"       # deleted messages
+color index       color20     color0       "~A"       # all messages
+color index       color1      color0       "~F"       # flagged messages
+color index       color20     color0       "~v~(!~N)" # collapsed thread with no unread
+color index       color4      color0       "~U"       # unread messages
+color index       color4      color0       "~v~(~N)"  # collapsed thread with some unread
+color index       color1      color0       "~v~(~F)"  # collapsed thread with some flagged
+color index       color0      color1       "~D"       # deleted messages
 
 # header
 color hdrdefault  color20     color18
-color header      color20     color18     "^"
-color header      color7      color18     "^(From)"
-color header      color7      color18     "^(Subject)"
+color header      color20     color18      "^"
+color header      color7      color18      "^(From)"
+color header      color7      color18      "^(Subject)"
 
 # body
 color normal      color7      color0
@@ -107,17 +82,16 @@ color quoted3     color6      color0
 color quoted4     color4      color0
 
 # pgp
-color body        color2      color0      "(Good signature)"
-color body        color2      color0      "^gpg: Good signature .*"
-color body        color20     color0      "^gpg: "
-color body        color1      color0      "(BAD signature)"
-color body        color1      color1      "^gpg: BAD signature from.*"
+color body        color2      color0       "(Good signature)"
+color body        color2      color0       "^gpg: Good signature .*"
+color body        color20     color0       "^gpg: "
+color body        color1      color0       "(BAD signature)"
+color body        color1      color1       "^gpg: BAD signature from.*"
 
 # body url
-color body          color4        color0        "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+color body        color4      color0       "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
 # body email
-color body          color4        color0        "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]),)*@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]):)?[0-9a-z_.+%$-]+@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\])"
-
+color body        color4      color0       "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]),)*@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]):)?[0-9a-z_.+%$-]+@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\])"
 
 # vim: filetype=muttrc
 
